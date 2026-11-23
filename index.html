@@ -276,13 +276,25 @@ footer .small{font-size:15px;color:var(--muted)}
 (function(){
   var buttons = document.querySelectorAll('.filters button');
   var entries = document.querySelectorAll('.entry');
+  var hashToFilter = {'environnement':'E', 'social':'S', 'gouvernance':'G'};
+  var filterToHash = {'E':'environnement', 'S':'social', 'G':'gouvernance'};
+  function apply(f){
+    buttons.forEach(function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-f') === f ? 'true' : 'false'); });
+    entries.forEach(function(e){ e.hidden = !(f === 'all' || e.getAttribute('data-p') === f); });
+  }
+  function fromHash(){
+    var h = (location.hash || '').replace('#','');
+    apply(hashToFilter[h] || 'all');
+  }
   buttons.forEach(function(b){
     b.addEventListener('click', function(){
       var f = b.getAttribute('data-f');
-      buttons.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      entries.forEach(function(e){ e.hidden = !(f === 'all' || e.getAttribute('data-p') === f); });
+      apply(f);
+      try { history.replaceState(null, '', f === 'all' ? location.pathname : '#' + filterToHash[f]); } catch(e) {}
     });
   });
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 })();
 </script>
 </body>
