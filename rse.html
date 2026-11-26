@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitória Dacal · Portfolio RSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&family=VT323&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: early-2000s web, redone with care. Each block is a "window" with a title bar, hard offset shadows,
+   square corners, a pixel band in the three ESG colours. Pixel type for structure, a serif for reading. */
+:root{
+  --paper:#f3f5f2;
+  --ink:#16211d;
+  --muted:#5a6762;
+  --rule:#16211d;
+  --card:#ffffff;
+  --soft:#e3e9e5;
+  --accent:#1f5c4a;
+  --pE:#3d7a3a;
+  --pS:#b4533a;
+  --pG:#2f5d86;
+  --pixel:"Silkscreen", "Courier New", monospace;
+  --term:"VT323", "Courier New", monospace;
+  --soft-pixel:"Pixelify Sans", "Trebuchet MS", sans-serif;
+  --body:"Newsreader", Georgia, "Times New Roman", serif;
+  --shadow:4px 4px 0 var(--ink);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1513; --ink:#e7ece9; --muted:#9aa8a2; --rule:#e7ece9; --card:#161e1b; --soft:#1f2a26;
+    --accent:#7cc3a6; --pE:#8cc287; --pS:#e3907a; --pG:#8db5dc; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1513; --ink:#e7ece9; --muted:#9aa8a2; --rule:#e7ece9; --card:#161e1b; --soft:#1f2a26;
+  --accent:#7cc3a6; --pE:#8cc287; --pS:#e3907a; --pG:#8db5dc; color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--paper);
+  background-image:radial-gradient(var(--soft) 1px, transparent 1px);
+  background-size:12px 12px;
+  color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55
+}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{background:var(--accent);color:var(--paper);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px dashed var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.num{font-variant-numeric:tabular-nums}
+
+/* Top bar, like a browser status line */
+.topbar{border-bottom:2px solid var(--ink);background:var(--card);font-family:var(--term);font-size:20px}
+.topbar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding-top:6px;padding-bottom:6px}
+.topbar .url{color:var(--muted)}
+.topbar .url b{color:var(--ink);font-weight:400}
+
+/* Pixel band */
+canvas.band{display:block;width:100%;height:48px;image-rendering:pixelated;border-bottom:2px solid var(--ink)}
+
+/* Windows */
+.win{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.titlebar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 8px;border-bottom:2px solid var(--ink);background:var(--tb, var(--ink));color:var(--paper);font-family:var(--pixel);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.titlebar .ctl{display:flex;gap:4px}
+.titlebar .ctl i{display:block;width:12px;height:12px;border:2px solid var(--paper)}
+.titlebar .ctl i:last-child{background:var(--paper)}
+.winbody{padding:22px 24px}
+
+/* Hero */
+header.hero{padding:40px 0 36px}
+.hero .winbody{padding:28px 28px 30px}
+.kicker{font-family:var(--term);font-size:22px;color:var(--muted);margin:0 0 10px}
+h1{font-family:var(--soft-pixel);font-weight:600;font-size:clamp(48px,9vw,104px);line-height:.95;letter-spacing:0;margin:0;text-wrap:balance}
+.cursor{display:inline-block;width:.5em;height:.12em;background:var(--accent);vertical-align:baseline;margin-left:.08em}
+@media (prefers-reduced-motion:no-preference){ .cursor{animation:blink 1.1s steps(1) infinite} }
+@keyframes blink{50%{opacity:0}}
+.role{font-family:var(--pixel);font-size:clamp(15px,2vw,19px);margin:18px 0 0;line-height:1.5}
+.role span{background:var(--accent);color:var(--paper);padding:2px 6px}
+.thesis{max-width:62ch;font-size:20px;margin:20px 0 0}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{font-family:var(--term);font-size:20px;line-height:1;border:2px solid var(--ink);padding:6px 10px;background:var(--paper);color:var(--ink);text-decoration:none}
+a.chip{box-shadow:3px 3px 0 var(--ink)}
+a.chip:hover{background:var(--ink);color:var(--paper)}
+a.chip:active{transform:translate(3px,3px);box-shadow:none}
+
+/* Pillar meter */
+.meter{margin-top:28px}
+.meter .bars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.meter .bar{height:18px;border:2px solid var(--ink);background-image:repeating-linear-gradient(90deg,var(--c) 0 10px,transparent 10px 12px)}
+.meter .labels{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px;font-family:var(--term);font-size:19px;color:var(--muted)}
+.meter .labels b{font-family:var(--pixel);font-size:12px;color:var(--ink);margin-right:6px}
+
+/* Sections */
+section{padding:28px 0 40px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.shead .n{font-family:var(--pixel);font-size:14px;background:var(--ink);color:var(--paper);padding:4px 8px}
+h2{font-family:var(--pixel);font-weight:700;font-size:clamp(22px,3.4vw,32px);margin:0;line-height:1.1;text-wrap:balance}
+.shead p{flex-basis:100%;margin:4px 0 0;color:var(--muted);max-width:62ch}
+
+/* Key figures */
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.fig .winbody{padding:16px 16px 18px}
+.fig .v{font-family:var(--soft-pixel);font-weight:600;font-size:46px;line-height:1}
+.fig .t{font-size:16px;color:var(--muted);margin-top:10px}
+
+/* Filters: bevelled buttons */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px}
+.filters button{font-family:var(--pixel);font-size:12px;letter-spacing:.03em;text-transform:uppercase;border:2px solid var(--ink);background:var(--card);color:var(--ink);padding:9px 12px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.filters button:hover{background:var(--soft)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);transform:translate(3px,3px);box-shadow:none}
+
+/* Entries as windows */
+.entries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.entry{display:flex;flex-direction:column}
+.entry[data-p="E"]{--pc:var(--pE)} .entry[data-p="S"]{--pc:var(--pS)} .entry[data-p="G"]{--pc:var(--pG)}
+.entry[hidden]{display:none}
+.entry .titlebar{--tb:var(--pc)}
+.entry .winbody{display:flex;flex-direction:column;gap:8px;flex:1}
+.entry h3{font-family:var(--pixel);font-weight:700;font-size:16px;line-height:1.35;margin:0}
+.entry .org{font-family:var(--term);font-size:20px;line-height:1.15;color:var(--muted);margin:0}
+.entry p{margin:0}
+.entry .rse{font-size:16px;border-top:2px dotted var(--ink);padding-top:10px;margin-top:auto}
+.entry .rse b{font-family:var(--pixel);font-size:11px;background:var(--pc);color:var(--paper);padding:2px 6px;margin-right:4px}
+
+/* Lists as a directory listing */
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:130px 1fr;gap:4px 20px;padding:14px 0;border-bottom:2px dotted var(--ink)}
+.list li:last-child{border-bottom:0}
+.list .y{font-family:var(--term);font-size:21px;line-height:1.3;color:var(--muted)}
+.list .what{margin:0}
+.list .what em{color:var(--muted)}
+.list strong{font-weight:600}
+
+footer{padding:10px 0 56px}
+footer .winbody p{margin:0 0 8px}
+footer .label{font-family:var(--pixel);font-weight:700;font-size:20px;margin:0 0 12px}
+footer .small{font-size:15px;color:var(--muted)}
+.status{font-family:var(--term);font-size:19px;color:var(--muted);margin-top:18px}
+
+@media (max-width:760px){
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .entries{grid-template-columns:1fr}
+  .list li{grid-template-columns:1fr}
+  .meter .labels{font-size:16px}
+  .winbody,.hero .winbody{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="url">http://<b>dacalvitoria.github.io</b></span>
+    <span>Paris · recherche d'alternance</span>
+  </div>
+</div>
+<canvas class="band" id="band" width="260" height="12" aria-hidden="true"></canvas>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="win">
+      <div class="titlebar"><span>portfolio_vitoria_dacal.html</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <p class="kicker">&gt; Portfolio · Recherche d'alternance · Paris</p>
+        <h1>Vitória<br>Dacal<span class="cursor" aria-hidden="true"></span></h1>
+        <p class="role">Chargée de projet RSE en alternance</p>
+        <p class="thesis">Juriste de formation, j'ai travaillé sur les droits numériques, la gouvernance de l'IA et le développement durable, en France et à l'international. En parallèle, je m'engage sur le terrain : soutien scolaire, aide juridique, agroécologie. Ce portfolio range ces expériences selon les trois piliers de la RSE.</p>
+        <div class="contact">
+          <span class="chip">v_dacal@hotmail.com</span>
+          <span class="chip num">07 80 77 67 82</span>
+          <a class="chip" href="https://www.linkedin.com/in/dacalvitoria">LinkedIn</a>
+          <a class="chip" href="https://substack.com/@vdacal">Substack</a>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <div class="bars">
+            <div class="bar" style="--c:var(--pE)"></div>
+            <div class="bar" style="--c:var(--pS)"></div>
+            <div class="bar" style="--c:var(--pG)"></div>
+          </div>
+          <div class="labels"><span><b>E</b>Environnement</span><span><b>S</b>Social</span><span><b>G</b>Gouvernance et numérique</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="n">01</span><h2>En chiffres</h2></div>
+    <div class="figs">
+      <div class="win fig"><div class="titlebar"><span>moyenne.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">16,46</div><div class="t">sur 20 : meilleure moyenne de ma promotion au master de la Sorbonne Nouvelle (IHEAL)</div></div></div>
+      <div class="win fig"><div class="titlebar"><span>langues.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">4</div><div class="t">langues de travail : français, anglais, espagnol, portugais</div></div></div>
+      <div class="win fig"><div class="titlebar"><span>droit.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">50+</div><div class="t">mémoires et requêtes rédigés comme avocate au Brésil</div></div></div>
+      <div class="win fig"><div class="titlebar"><span>reseau.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">70+</div><div class="t">organisations de la société civile dans 86 pays, réunies dans les groupes de travail que j'ai co-animés chez Forus</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experiences">
+  <div class="wrap">
+    <div class="shead"><span class="n">02</span><h2>Expériences et engagements, par pilier</h2><p>Missions professionnelles et bénévolat. Chaque fiche indique ce qu'elle apporte à une démarche RSE.</p></div>
+    <div class="filters" role="group" aria-label="Filtrer par pilier">
+      <button type="button" id="f-all" data-f="all" aria-pressed="true">Tout voir</button>
+      <button type="button" id="f-e" data-f="E" aria-pressed="false">E · Environnement</button>
+      <button type="button" id="f-s" data-f="S" aria-pressed="false">S · Social</button>
+      <button type="button" id="f-g" data-f="G" aria-pressed="false">G · Gouvernance et numérique</button>
+    </div>
+    <div class="entries">
+
+      <article class="win entry" data-p="G">
+        <div class="titlebar"><span>G · mars – sept. 2025</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Assistante plaidoyer trilingue (stage)</h3>
+          <p class="org">Forus International, Paris</p>
+          <p>Co-animation des groupes de travail Droits numériques et Environnement favorable : réunions, webinaires, consultations, suivi des livrables. Préparation de la participation du réseau aux processus de l'ONU sur les Objectifs de développement durable (HLPF, FfD4), à l'OCDE et à l'IGF.</p>
+          <p class="rse"><b>Pour la RSE</b> dialogue avec les parties prenantes, suivi des ODD, pilotage de projet multi-acteurs</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="G">
+        <div class="titlebar"><span>G · janv. – avr. 2026</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Groupe de recherche, AI Policy Clinic</h3>
+          <p class="org">Center for AI and Digital Policy (CAIDP), à distance, bénévole</p>
+          <p>Contribution à l'analyse comparative des politiques d'IA menée par le groupe sur plus de 75 pays, au regard de l'AI Act, de la Recommandation de l'UNESCO et des Principes de l'OCDE. Rédaction du rapport Arabie saoudite pour l'AI &amp; Democratic Values Index, validé avec mention.</p>
+          <p class="rse"><b>Pour la RSE</b> veille réglementaire IA, lecture de l'AI Act, analyse de conformité</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="G">
+        <div class="titlebar"><span>G · depuis 2026</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Governing AI : Upside Down Project</h3>
+          <p class="org">Newsletter personnelle, Substack</p>
+          <p>Essais sur la gouvernance de l'IA et la souveraineté numérique, vus depuis l'Amérique latine et avec une lecture féministe.</p>
+          <p class="rse"><b>Pour la RSE</b> expliquer un sujet technique et réglementaire à un public large · <a href="https://substack.com/@vdacal">Lire la newsletter</a></p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="S">
+        <div class="titlebar"><span>S · depuis sept. 2023</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Tutrice bénévole</h3>
+          <p class="org">AFEV Paris</p>
+          <p>Accompagnement scolaire d'élèves de quartiers populaires, chaque semaine depuis mon arrivée en France.</p>
+          <p class="rse"><b>Pour la RSE</b> égalité des chances, engagement dans la durée, ancrage local</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="S">
+        <div class="titlebar"><span>S · 2021 – 2022</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Soutien juridique bénévole</h3>
+          <p class="org">Nós Seguras, Campo Grande, Brésil</p>
+          <p>Accompagnement juridique de femmes victimes de violences conjugales, en parallèle de mon activité d'avocate.</p>
+          <p class="rse"><b>Pour la RSE</b> égalité femmes-hommes, droits humains, écoute des personnes concernées</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="S">
+        <div class="titlebar"><span>S · oct. 2024 – mars 2025</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Assistante de recherche (stage)</h3>
+          <p class="org">Institut des Sciences Sociales du Politique (ISP/CNRS), Paris</p>
+          <p>Entretiens avec des universitaires et artistes en exil, avec consentement éclairé et anonymisation. Co-organisation d'un séminaire franco-brésilien de plusieurs jours, avec des sessions au Collège de France.</p>
+          <p class="rse"><b>Pour la RSE</b> inclusion, éthique de la collecte de données, organisation d'événements</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="E">
+        <div class="titlebar"><span>E · 2023</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Projet d'agroforesterie</h3>
+          <p class="org">Ferme Primavesi, Terenos, Brésil</p>
+          <p>Participation ponctuelle aux travaux d'une ferme en agroforesterie.</p>
+          <p class="rse"><b>Pour la RSE</b> connaissance pratique de l'agroécologie et de la régénération des sols</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="E">
+        <div class="titlebar"><span>E · nov. – déc. 2019</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Projet d'agroforesterie</h3>
+          <p class="org">Ferme privée, Barcelone, Espagne</p>
+          <p>Bénévolat dans une ferme en agroforesterie.</p>
+          <p class="rse"><b>Pour la RSE</b> expérience de terrain des pratiques agricoles durables</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="E">
+        <div class="titlebar"><span>E · août – nov. 2019</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Ferme en permaculture et centre culturel</h3>
+          <p class="org">CatFarm, Poussan, France</p>
+          <p>Bénévolat dans une ferme en permaculture qui accueille aussi des artistes en résidence.</p>
+          <p class="rse"><b>Pour la RSE</b> lien entre transition écologique et vie culturelle locale</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="n">03</span><h2>Publications et interventions</h2></div>
+    <div class="win">
+      <div class="titlebar"><span>C:\publications</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <ul class="list">
+          <li><span class="y num">2025</span><p class="what"><a href="https://eusee.hivos.org/?p=2500">When Cyber Protections Undermine the Enabling Environment</a> · tribune co-écrite avec Clarisse Sih et Bibbi Abruzzini, <em>EU SEE / Hivos</em></p></li>
+          <li><span class="y num">2025</span><p class="what"><a href="https://www.forus-international.org/news/lgbtqiap-rights-and-sustainable-development-reflections-in-the-context-of-pride-month-2025">LGBTQIAP+ rights and sustainable development: reflections in the context of Pride Month 2025</a> · tribune, <em>Forus</em></p></li>
+          <li><span class="y num">2024</span><p class="what">Communications à la Sciences Po Law School et au colloque Diversitas, Portugal</p></li>
+          <li><span class="y num">2023</span><p class="what">The Movement in Motion: The Current Zapatista Network · article, <em>Caminando</em></p></li>
+          <li><span class="y num">2022</span><p class="what">Communication au Congrès sur la diversité sexuelle et de genre, Brésil</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="n">04</span><h2>Formation</h2></div>
+    <div class="win">
+      <div class="titlebar"><span>C:\formation</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <ul class="list">
+          <li><span class="y num">2027</span><p class="what"><strong>Formation en alternance</strong> · à partir de janvier 2027</p></li>
+          <li><span class="y num">2023 – 2025</span><p class="what"><strong>Master Sciences sociales, Coopération et développement en Amérique latine</strong> · Sorbonne Nouvelle (IHEAL) · meilleure moyenne de la promotion, mémoire sur la souveraineté numérique</p></li>
+          <li><span class="y num">2026</span><p class="what"><strong>Formations courtes en gouvernance de l'IA</strong> · BlueDot Impact (AI Governance, Frontier AI Governance)</p></li>
+          <li><span class="y num">2014 – 2019</span><p class="what"><strong>Diplôme de droit</strong> (5 ans) · Universidade Federal de Mato Grosso do Sul, Brésil · avocate inscrite au barreau, exercice de 2021 à 2022</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="win">
+      <div class="titlebar"><span>contact.txt</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <p class="label">Me contacter</p>
+        <p>v_dacal@hotmail.com · <span class="num">07 80 77 67 82</span> · <a href="https://www.linkedin.com/in/dacalvitoria">LinkedIn</a></p>
+        <p class="small">Recherche une alternance à Paris (contrat d'apprentissage possible). Permis B.</p>
+        <p class="small">Voir aussi le <a href="./droit">profil juridique</a>.</p>
+      </div>
+    </div>
+    <p class="status">Dernière mise à jour : novembre 2026</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Pixel band: columns of squares that move from E (green) to S (coral) to G (blue), with a dithered edge.
+  var c = document.getElementById('band');
+  if (c && c.getContext){
+    var ctx = c.getContext('2d');
+    var css = getComputedStyle(document.documentElement);
+    function col(n){ return css.getPropertyValue(n).trim(); }
+    function draw(){
+      var cols = [col('--pE'), col('--pS'), col('--pG')];
+      var paper = col('--paper');
+      var W = c.width, H = c.height;
+      ctx.fillStyle = paper; ctx.fillRect(0,0,W,H);
+      var seed = 7;
+      function rnd(){ seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+      for (var x = 0; x < W; x++){
+        var t = x / (W - 1) * 3;
+        var i = Math.min(2, Math.floor(t));
+        var f = t - i;
+        for (var y = 0; y < H; y++){
+          var r = rnd();
+          var k = i;
+          if (i < 2 && r < f * 0.9) k = i + 1;
+          var fill = (y / H) + r * 0.6 > 0.35 ? cols[k] : paper;
+          ctx.fillStyle = fill; ctx.fillRect(x, y, 1, 1);
+        }
+      }
+    }
+    draw();
+    try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw); } catch(e) {}
+  }
+
+  // Filters, with #environnement, #social, #gouvernance links.
+  var buttons = document.querySelectorAll('.filters button');
+  var entries = document.querySelectorAll('.entry');
+  var hashToFilter = {'environnement':'E', 'social':'S', 'gouvernance':'G'};
+  var filterToHash = {'E':'environnement', 'S':'social', 'G':'gouvernance'};
+  function apply(f){
+    buttons.forEach(function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-f') === f ? 'true' : 'false'); });
+    entries.forEach(function(e){ e.hidden = !(f === 'all' || e.getAttribute('data-p') === f); });
+  }
+  function fromHash(){
+    var h = (location.hash || '').replace('#','');
+    apply(hashToFilter[h] || 'all');
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-f');
+      apply(f);
+      try { history.replaceState(null, '', f === 'all' ? location.pathname : '#' + filterToHash[f]); } catch(e) {}
+    });
+  });
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>

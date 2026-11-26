@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitória Dacal · Juriste</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: same structure as the CV (panels with a navy title bar), serif headings, one blue. A legal profile, read top-down. */
+:root{
+  --paper:#f6f8fb;
+  --card:#ffffff;
+  --ink:#16202b;
+  --muted:#5b6876;
+  --line:#c9d5e2;
+  --navy:#1f3f63;
+  --blue:#2f5d86;
+  --tint:#eef3f8;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e141b; --card:#141c25; --ink:#e6ebf1; --muted:#9aa7b5; --line:#2a3644;
+    --navy:#8fb3d9; --blue:#8fb3d9; --tint:#1a2430; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e141b; --card:#141c25; --ink:#e6ebf1; --muted:#9aa7b5; --line:#2a3644;
+  --navy:#8fb3d9; --blue:#8fb3d9; --tint:#1a2430; color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.55}
+a{color:var(--blue);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.num{font-variant-numeric:tabular-nums}
+.topline{height:6px;background:var(--navy)}
+
+.panel{background:var(--card);border:1px solid var(--line)}
+.bar{background:var(--navy);color:#fff;font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px}
+:root[data-theme="dark"] .bar{color:#0e141b}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .bar{color:#0e141b} }
+.body{padding:22px 24px}
+
+header{padding:36px 0 28px}
+.head{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px,6vw,64px);line-height:1;margin:0;letter-spacing:-.01em}
+.role{font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:14px 0 0}
+.lead{max-width:60ch;margin:18px 0 0;font-size:19px}
+.contact{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{font-family:var(--sans);font-size:14px;border:1px solid var(--line);background:var(--tint);padding:5px 10px;color:var(--ink);text-decoration:none}
+a.chip:hover{border-color:var(--blue)}
+.side-box{border-left:1px solid var(--line);padding-left:24px;font-size:16px}
+.side-box .lab{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:var(--blue);color:#fff;padding:3px 8px;margin-bottom:10px}
+.side-box p{margin:0 0 6px}
+.side-box b{font-weight:600}
+
+section{padding:14px 0 30px}
+h2{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid var(--navy)}
+h2 .n{background:var(--navy);color:var(--paper);font-weight:500;font-size:11px;padding:2px 7px}
+
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.fig .body{padding:16px 18px}
+.fig .v{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1;color:var(--navy)}
+.fig .t{font-size:15px;color:var(--muted);margin-top:8px}
+
+.job{border-left:4px solid var(--blue);padding:2px 0 2px 16px;margin-bottom:22px}
+.jh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;align-items:baseline}
+.jt{font-weight:600;font-size:19px}
+.jd{font-family:var(--sans);font-size:14px;color:var(--muted)}
+.jo{font-family:var(--sans);font-size:14px;color:var(--muted);margin:2px 0 6px}
+.job ul{margin:0;padding-left:18px}
+.job li{margin-bottom:4px}
+.job li::marker{color:var(--blue)}
+
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:120px 1fr;gap:4px 20px;padding:12px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.list .y{font-family:var(--sans);font-size:14px;color:var(--muted);padding-top:3px}
+.list p{margin:0}
+.list em{color:var(--muted)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.langs{display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:17px}
+.langs span:nth-child(even){font-family:var(--sans);font-size:14px;color:var(--muted)}
+
+footer{padding:10px 0 56px;font-size:16px;color:var(--muted)}
+
+@media (max-width:760px){
+  .head{grid-template-columns:1fr}
+  .side-box{border-left:0;border-top:1px solid var(--line);padding:16px 0 0}
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .two{grid-template-columns:1fr}
+  .list li{grid-template-columns:1fr}
+  .body{padding:18px}
+}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+
+<header>
+  <div class="wrap">
+    <div class="panel">
+      <div class="bar">Profil juridique</div>
+      <div class="body head">
+        <div>
+          <h1>Vitória Dacal</h1>
+          <p class="role">Juriste · conformité, RSE et numérique</p>
+          <p class="lead">Juriste de formation, j'ai exercé comme avocate au Brésil et je travaille aujourd'hui comme assistante juridique pour un cabinet brésilien. Je me spécialise dans la régulation du numérique et de l'IA, et je vise un poste de juriste d'entreprise en conformité.</p>
+          <div class="contact">
+            <span class="chip">v_dacal@hotmail.com</span>
+            <span class="chip num">07 80 77 67 82</span>
+            <a class="chip" href="https://www.linkedin.com/in/dacalvitoria">LinkedIn</a>
+            <a class="chip" href="https://substack.com/@vdacal">Substack</a>
+          </div>
+        </div>
+        <div class="side-box">
+          <span class="lab">Alternance</span>
+          <p><b>Juriste d'entreprise</b>, contrat d'apprentissage</p>
+          <p>À partir de janvier 2027</p>
+          <p>Paris · Permis B</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <h2><span class="n">01</span>En chiffres</h2>
+    <div class="figs">
+      <div class="panel fig"><div class="body"><div class="v num">50+</div><div class="t">mémoires et requêtes rédigés comme avocate au Brésil</div></div></div>
+      <div class="panel fig"><div class="body"><div class="v num">16,46</div><div class="t">sur 20 : meilleure moyenne de ma promotion au master de la Sorbonne Nouvelle</div></div></div>
+      <div class="panel fig"><div class="body"><div class="v num">5</div><div class="t">années d'études de droit, puis pratique en cabinet et en juridiction</div></div></div>
+      <div class="panel fig"><div class="body"><div class="v num">4</div><div class="t">langues de travail : français, anglais, espagnol, portugais</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">02</span>Parcours juridique</h2>
+    <div class="job">
+      <div class="jh"><span class="jt">Assistante juridique (freelance, à distance)</span><span class="jd">depuis sept. 2026</span></div>
+      <div class="jo">Cabinet d'avocats brésilien</div>
+      <ul><li>Analyse de dossiers et rédaction d'actes et d'avis juridiques en droit civil, pénal et du travail, pour un cabinet à fort volume.</li></ul>
+    </div>
+    <div class="job">
+      <div class="jh"><span class="jt">Avocate</span><span class="jd">févr. 2021 – juin 2022</span></div>
+      <div class="jo">EGS Advogados Associados, Campo Grande, Brésil</div>
+      <ul>
+        <li>Représentation de clients en procédures administratives et judiciaires, devant les juridictions de l'État et en audience.</li>
+        <li>Rédaction de plus de 50 mémoires, requêtes et conclusions ; conseil juridique aux clients.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="jh"><span class="jt">Soutien juridique bénévole</span><span class="jd">2021 – 2022</span></div>
+      <div class="jo">Nós Seguras, Campo Grande, Brésil</div>
+      <ul><li>Accompagnement juridique de femmes victimes de violences conjugales, en parallèle de mon activité d'avocate.</li></ul>
+    </div>
+    <div class="job">
+      <div class="jh"><span class="jt">Stages juridiques</span><span class="jd">2014 – 2019</span></div>
+      <div class="jo">Brésil</div>
+      <ul><li>Cour des comptes de l'État (contrôle des comptes publics), ministère public, cour d'appel du Mato Grosso do Sul et cabinet Mozart Associados : procédures administratives, civiles et pénales.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">03</span>Régulation du numérique et de l'IA</h2>
+    <div class="job">
+      <div class="jh"><span class="jt">Groupe de recherche, AI Policy Clinic (bénévole)</span><span class="jd">janv. – avr. 2026</span></div>
+      <div class="jo">Center for AI and Digital Policy (CAIDP), à distance</div>
+      <ul>
+        <li>Contribution à l'analyse comparative des politiques d'IA menée par le groupe sur plus de 75 pays, au regard de l'AI Act, de la Recommandation de l'UNESCO et des Principes de l'OCDE.</li>
+        <li>Rédaction du rapport Arabie saoudite pour l'AI &amp; Democratic Values Index, à partir des textes juridiques ; validé avec mention.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="jh"><span class="jt">Assistante plaidoyer trilingue (stage)</span><span class="jd">mars – sept. 2025</span></div>
+      <div class="jo">Forus International, Paris</div>
+      <ul>
+        <li>Co-animation du groupe de travail Droits numériques d'un réseau de plus de 70 organisations dans 86 pays.</li>
+        <li>Notes de synthèse sur les droits numériques et l'espace civique pour les processus de l'ONU, de l'OCDE et de l'IGF.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="jh"><span class="jt">Governing AI : Upside Down Project</span><span class="jd">depuis 2026</span></div>
+      <div class="jo">Newsletter, Substack</div>
+      <ul><li>Essais sur la gouvernance de l'IA et la souveraineté numérique, vus depuis l'Amérique latine. <a href="https://substack.com/@vdacal">Lire la newsletter</a></li></ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">04</span>Formation</h2>
+    <div class="panel"><div class="body">
+      <ul class="list">
+        <li><span class="y num">2027</span><p><strong>Formation en alternance</strong> · à partir de janvier 2027</p></li>
+        <li><span class="y num">2023 – 2025</span><p><strong>Master Sciences sociales, Coopération et développement en Amérique latine</strong> · Sorbonne Nouvelle (IHEAL) · meilleure moyenne de la promotion ; mémoire sur la souveraineté numérique</p></li>
+        <li><span class="y num">2014 – 2019</span><p><strong>Diplôme de droit</strong> (5 ans) · Universidade Federal de Mato Grosso do Sul, Brésil ; mémoire sur la criminalisation de la LGBTphobie</p></li>
+        <li><span class="y num">2026</span><p><strong>Gouvernance de l'IA</strong> · formations courtes BlueDot Impact (AI Governance, Frontier AI Governance)</p></li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">05</span>Publications</h2>
+    <div class="panel"><div class="body">
+      <ul class="list">
+        <li><span class="y num">2025</span><p><a href="https://eusee.hivos.org/?p=2500">When Cyber Protections Undermine the Enabling Environment</a> · tribune co-écrite, <em>EU SEE / Hivos</em></p></li>
+        <li><span class="y num">2025</span><p><a href="https://www.forus-international.org/news/lgbtqiap-rights-and-sustainable-development-reflections-in-the-context-of-pride-month-2025">LGBTQIAP+ rights and sustainable development</a> · tribune, <em>Forus</em></p></li>
+        <li><span class="y num">2024</span><p>Communications à la Sciences Po Law School et au colloque Diversitas, Portugal</p></li>
+        <li><span class="y num">2022</span><p>Communication au Congrès sur la diversité sexuelle et de genre, Brésil</p></li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">06</span>Langues et autres expériences</h2>
+    <div class="two">
+      <div class="panel"><div class="bar">Langues</div><div class="body langs">
+        <span>Portugais</span><span>langue maternelle</span>
+        <span>Français</span><span>C2</span>
+        <span>Anglais</span><span>C2</span>
+        <span>Espagnol</span><span>C2</span>
+        <span>Allemand</span><span>A2</span>
+      </div></div>
+      <div class="panel"><div class="bar">Autres expériences</div><div class="body">
+        <ul class="list">
+          <li><span class="y">2024 – 2025</span><p>Assistante de recherche, ISP/CNRS, Paris</p></li>
+          <li><span class="y">2026</span><p>Réceptionniste en hôtel, Paris 15e</p></li>
+          <li><span class="y">2 saisons</span><p>Accueil des publics, Musée d'Art Moderne de Paris</p></li>
+          <li><span class="y">depuis 2023</span><p>Tutrice bénévole, AFEV Paris</p></li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Contact : v_dacal@hotmail.com · <span class="num">07 80 77 67 82</span> · <a href="https://www.linkedin.com/in/dacalvitoria">LinkedIn</a></p>
+    <p>Voir aussi le <a href="./rse">portfolio RSE</a>.</p>
+  </div>
+</footer>
+</body>
+</html>
