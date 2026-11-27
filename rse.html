@@ -6,7 +6,7 @@
 <title>Vitória Dacal · Portfolio RSE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&family=VT323&family=IBM+Plex+Mono:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
 /* Layout: early-2000s web, redone with care. Each block is a "window" with a title bar, hard offset shadows,
    square corners, a pixel band in the three ESG colours. Pixel type for structure, a serif for reading. */
@@ -140,11 +140,31 @@ footer .label{font-family:var(--pixel);font-weight:700;font-size:20px;margin:0 0
 footer .small{font-size:15px;color:var(--muted)}
 .status{font-family:var(--term);font-size:19px;color:var(--muted);margin-top:18px}
 
+/* Ordinary type (same as /ia): Inter replaces the pixel and terminal fonts. */
+:root{--pixel:"Inter","Helvetica Neue",Arial,sans-serif;--term:"Inter","Helvetica Neue",Arial,sans-serif;--soft-pixel:"Inter","Helvetica Neue",Arial,sans-serif}
+.topbar{font-size:14px}
+.titlebar{font-weight:600;font-size:11.5px;letter-spacing:.06em}
+.kicker{font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+h1{font-weight:700;font-size:clamp(44px,8vw,88px);line-height:1;letter-spacing:-.02em}
+.role{font-weight:600}
+.chip{font-size:14px;font-weight:500;padding:8px 11px}
+.meter .labels{font-size:13.5px}
+.meter .labels b{font-size:13.5px}
+.shead .n{font-weight:700;font-size:13px}
+h2{letter-spacing:-.01em;line-height:1.15}
+.fig .v{font-family:var(--pixel);font-weight:700;font-size:42px}
+.filters button{font-weight:600;font-size:13px;letter-spacing:0;text-transform:none}
+.entry h3{font-size:17px;line-height:1.3}
+.entry .org{font-size:14px;line-height:1.4}
+.entry .rse b{font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.list .y{font-size:14px;font-weight:600;line-height:1.9}
+.status{font-size:13px}
+
 @media (max-width:760px){
   .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .entries{grid-template-columns:1fr}
   .list li{grid-template-columns:1fr}
-  .meter .labels{font-size:16px}
+  .meter .labels{font-size:12px}
   .winbody,.hero .winbody{padding:18px}
 }
 </style>
