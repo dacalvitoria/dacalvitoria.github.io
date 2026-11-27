@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitória Dacal · Gouvernance et régulation de l'IA</title>
+<meta name="description" content="Portfolio de Vitória Dacal, juriste : régulation de l'IA, AI Act, RGPD, analyse comparative des politiques d'IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Same window layout as the other pages, with ordinary type: Inter for structure, Newsreader for reading. */
+:root{
+  --paper:#f3f5f2;
+  --ink:#16211d;
+  --muted:#5a6762;
+  --card:#ffffff;
+  --soft:#e3e9e5;
+  --accent:#1f5c4a;
+  --pR:#2f5d86;
+  --pJ:#6b5a2e;
+  --pP:#b4533a;
+  --ui:"Inter", "Helvetica Neue", Arial, sans-serif;
+  --body:"Newsreader", Georgia, "Times New Roman", serif;
+  --shadow:3px 3px 0 var(--ink);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1513; --ink:#e7ece9; --muted:#9aa8a2; --card:#161e1b; --soft:#1f2a26;
+    --accent:#7cc3a6; --pR:#8db5dc; --pJ:#cdb67c; --pP:#e3907a; color-scheme: dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--paper);
+  background-image:radial-gradient(var(--soft) 1px, transparent 1px);
+  background-size:12px 12px;
+  color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55
+}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{background:var(--accent);color:var(--paper);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px dashed var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.num{font-variant-numeric:tabular-nums}
+
+.topbar{border-bottom:2px solid var(--ink);background:var(--card);font-family:var(--ui);font-size:14px}
+.topbar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding-top:8px;padding-bottom:8px}
+.topbar .url{color:var(--muted)}
+.topbar .url b{color:var(--ink);font-weight:600}
+
+.win{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.titlebar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:5px 9px;border-bottom:2px solid var(--ink);background:var(--tb, var(--ink));color:var(--paper);font-family:var(--ui);font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+.titlebar .ctl{display:flex;gap:4px}
+.titlebar .ctl i{display:block;width:11px;height:11px;border:2px solid var(--paper)}
+.titlebar .ctl i:last-child{background:var(--paper)}
+.winbody{padding:22px 24px}
+
+header.hero{padding:40px 0 36px}
+.hero .winbody{padding:28px 28px 30px}
+.kicker{font-family:var(--ui);font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+h1{font-family:var(--ui);font-weight:700;font-size:clamp(44px,8vw,88px);line-height:1;letter-spacing:-.02em;margin:0}
+.role{font-family:var(--ui);font-weight:600;font-size:clamp(15px,2vw,18px);margin:18px 0 0}
+.role span{background:var(--accent);color:var(--paper);padding:3px 8px}
+.thesis{max-width:64ch;font-size:20px;margin:20px 0 0}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{font-family:var(--ui);font-size:14px;font-weight:500;line-height:1;border:2px solid var(--ink);padding:8px 11px;background:var(--paper);color:var(--ink);text-decoration:none}
+a.chip{box-shadow:3px 3px 0 var(--ink)}
+a.chip:hover{background:var(--ink);color:var(--paper)}
+a.chip:active{transform:translate(3px,3px);box-shadow:none}
+
+.meter{margin-top:28px}
+.meter .bars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.meter .bar{height:14px;border:2px solid var(--ink);background:var(--c)}
+.meter .labels{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;font-family:var(--ui);font-size:13.5px;color:var(--muted)}
+.meter .labels b{color:var(--ink);margin-right:6px}
+
+section{padding:28px 0 40px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.shead .n{font-family:var(--ui);font-weight:700;font-size:13px;background:var(--ink);color:var(--paper);padding:4px 8px}
+h2{font-family:var(--ui);font-weight:700;font-size:clamp(22px,3.2vw,30px);letter-spacing:-.01em;margin:0;line-height:1.15}
+.shead p{flex-basis:100%;margin:4px 0 0;color:var(--muted);max-width:64ch}
+
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.fig .winbody{padding:16px 16px 18px}
+.fig .v{font-family:var(--ui);font-weight:700;font-size:42px;line-height:1;letter-spacing:-.02em}
+.fig .t{font-size:16px;color:var(--muted);margin-top:10px}
+
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px}
+.filters button{font-family:var(--ui);font-weight:600;font-size:13px;border:2px solid var(--ink);background:var(--card);color:var(--ink);padding:9px 12px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.filters button:hover{background:var(--soft)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);transform:translate(3px,3px);box-shadow:none}
+
+.entries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.entry{display:flex;flex-direction:column}
+.entry[data-p="R"]{--pc:var(--pR)} .entry[data-p="J"]{--pc:var(--pJ)} .entry[data-p="P"]{--pc:var(--pP)}
+.entry[hidden]{display:none}
+.entry .titlebar{--tb:var(--pc)}
+.entry .winbody{display:flex;flex-direction:column;gap:8px;flex:1}
+.entry h3{font-family:var(--ui);font-weight:700;font-size:17px;line-height:1.3;margin:0}
+.entry .org{font-family:var(--ui);font-size:14px;color:var(--muted);margin:0}
+.entry p{margin:0}
+.entry .use{font-size:16px;border-top:2px dotted var(--ink);padding-top:10px;margin-top:auto}
+.entry .use b{font-family:var(--ui);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--pc);color:var(--paper);padding:2px 6px;margin-right:4px}
+
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.skills ul{margin:0;padding-left:1.1em}
+.skills li{margin:0 0 8px}
+.skills li b{font-family:var(--ui);font-size:15px;font-weight:600}
+.note{font-size:16px;color:var(--muted);margin:14px 0 0}
+
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:130px 1fr;gap:4px 20px;padding:14px 0;border-bottom:2px dotted var(--ink)}
+.list li:last-child{border-bottom:0}
+.list .y{font-family:var(--ui);font-size:14px;font-weight:600;line-height:1.9;color:var(--muted)}
+.list .what{margin:0}
+.list .what em{color:var(--muted)}
+.list strong{font-weight:600}
+
+footer{padding:10px 0 56px}
+footer .winbody p{margin:0 0 8px}
+footer .label{font-family:var(--ui);font-weight:700;font-size:20px;margin:0 0 12px}
+footer .small{font-size:15px;color:var(--muted)}
+.status{font-family:var(--ui);font-size:13px;color:var(--muted);margin-top:18px}
+
+@media (max-width:760px){
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .entries,.skills{grid-template-columns:1fr}
+  .list li{grid-template-columns:1fr}
+  .meter .labels{font-size:12px}
+  .winbody,.hero .winbody{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="url">http://<b>dacalvitoria.github.io/ia</b></span>
+    <span>Paris · gouvernance et régulation de l'IA</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="win">
+      <div class="titlebar"><span>portfolio_ia_vitoria_dacal.html</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <p class="kicker">Portfolio · Gouvernance de l'IA · Paris</p>
+        <h1>Vitória Dacal</h1>
+        <p class="role"><span>Juriste · Gouvernance et régulation de l'IA</span></p>
+        <p class="thesis">J'ai exercé comme avocate au Brésil, puis obtenu la meilleure moyenne de ma promotion au master de la Sorbonne Nouvelle, avec un mémoire sur la souveraineté numérique. Je travaille sur la régulation de l'IA : lire les textes (AI Act, RGPD, principes de l'OCDE, recommandation de l'UNESCO), les comparer d'un pays à l'autre et en tirer des obligations concrètes.</p>
+        <div class="contact">
+          <span class="chip">v_dacal@hotmail.com</span>
+          <span class="chip num">07 80 77 67 82</span>
+          <a class="chip" href="https://www.linkedin.com/in/dacalvitoria">LinkedIn</a>
+          <a class="chip" href="https://substack.com/@vdacal">Substack</a>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <div class="bars">
+            <div class="bar" style="--c:var(--pR)"></div>
+            <div class="bar" style="--c:var(--pJ)"></div>
+            <div class="bar" style="--c:var(--pP)"></div>
+          </div>
+          <div class="labels"><span><b>R</b>Régulation de l'IA</span><span><b>J</b>Pratique juridique</span><span><b>P</b>Parties prenantes et recherche</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="n">01</span><h2>En chiffres</h2></div>
+    <div class="figs">
+      <div class="win fig"><div class="titlebar"><span>politiques_ia.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">75+</div><div class="t">pays couverts par l'analyse comparative des politiques d'IA à laquelle j'ai contribué au CAIDP</div></div></div>
+      <div class="win fig"><div class="titlebar"><span>droit.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">50+</div><div class="t">mémoires et requêtes rédigés comme avocate au Brésil</div></div></div>
+      <div class="win fig"><div class="titlebar"><span>reseau.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">70+</div><div class="t">organisations de la société civile dans 86 pays, dans les groupes de travail que j'ai co-animés chez Forus</div></div></div>
+      <div class="win fig"><div class="titlebar"><span>langues.dat</span><span class="ctl"><i></i></span></div><div class="winbody"><div class="v num">4</div><div class="t">langues de travail : français, anglais, espagnol, portugais</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experiences">
+  <div class="wrap">
+    <div class="shead"><span class="n">02</span><h2>Expériences</h2><p>Chaque fiche indique ce qu'elle apporte à un travail de gouvernance de l'IA.</p></div>
+    <div class="filters" role="group" aria-label="Filtrer par domaine">
+      <button type="button" data-f="all" aria-pressed="true">Tout voir</button>
+      <button type="button" data-f="R" aria-pressed="false">R · Régulation de l'IA</button>
+      <button type="button" data-f="J" aria-pressed="false">J · Pratique juridique</button>
+      <button type="button" data-f="P" aria-pressed="false">P · Parties prenantes et recherche</button>
+    </div>
+    <div class="entries">
+
+      <article class="win entry" data-p="R">
+        <div class="titlebar"><span>R · janv. – avr. 2026</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Groupe de recherche, AI Policy Clinic</h3>
+          <p class="org">Center for AI and Digital Policy (CAIDP), à distance, bénévole</p>
+          <p>Contribution à l'analyse comparative des politiques d'IA menée par le groupe sur plus de 75 pays, au regard de l'AI Act, de la recommandation de l'UNESCO et des principes de l'OCDE. Rédaction du rapport sur l'Arabie saoudite pour l'AI &amp; Democratic Values Index, validé avec mention.</p>
+          <p class="use"><b>Pour la gouvernance IA</b> lecture des textes primaires, analyse comparative, évaluation d'un cadre national</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="R">
+        <div class="titlebar"><span>R · depuis 2026</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Governing AI : Upside Down Project</h3>
+          <p class="org">Newsletter personnelle, Substack</p>
+          <p>Essais sur la gouvernance de l'IA et la souveraineté numérique, écrits depuis l'Amérique latine avec une lecture féministe.</p>
+          <p class="use"><b>Pour la gouvernance IA</b> expliquer la régulation à un public non spécialiste · <a href="https://substack.com/@vdacal">Lire la newsletter</a></p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="R">
+        <div class="titlebar"><span>R · depuis 2026</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Formation continue et groupes d'étude</h3>
+          <p class="org">BlueDot Impact · Women4AISafety · AI Governance Club · AI Safety en Español</p>
+          <p>Deux formations BlueDot Impact (AI Governance and AGI Strategy, Frontier AI Governance). Participation régulière à trois groupes d'étude sur la gouvernance et la sécurité de l'IA.</p>
+          <p class="use"><b>Pour la gouvernance IA</b> suivi de l'AI Act, du Code de pratique pour l'IA à usage général et des débats sur les modèles de pointe</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="J">
+        <div class="titlebar"><span>J · depuis sept. 2026</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Assistante juridique (freelance)</h3>
+          <p class="org">Cabinet d'avocats brésilien, à distance</p>
+          <p>Suivi de procédures, révision de dossiers, rédaction de pièces et d'avis juridiques en droit civil, pénal et du travail.</p>
+          <p class="use"><b>Pour la gouvernance IA</b> pratique quotidienne de l'analyse juridique et de la rédaction</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="J">
+        <div class="titlebar"><span>J · févr. 2021 – juin 2022</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Avocate</h3>
+          <p class="org">EGS Advogados Associados, Campo Grande, Brésil</p>
+          <p>Procédures administratives et judiciaires devant les juridictions de l'État ; rédaction de plus de 50 mémoires et requêtes ; audiences. Avant : stages au tribunal de justice, à la cour des comptes de l'État et au ministère public (2014 – 2019).</p>
+          <p class="use"><b>Pour la gouvernance IA</b> contentieux, contrôle des comptes publics, lecture d'une norme face à un cas réel</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="J">
+        <div class="titlebar"><span>J · 2021 – 2022</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Soutien juridique bénévole</h3>
+          <p class="org">Nós Seguras, Campo Grande, Brésil</p>
+          <p>Accompagnement juridique de femmes victimes de violences conjugales, en parallèle de mon activité d'avocate.</p>
+          <p class="use"><b>Pour la gouvernance IA</b> droits fondamentaux vus depuis les personnes concernées</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="P">
+        <div class="titlebar"><span>P · mars – sept. 2025</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Assistante plaidoyer trilingue (stage)</h3>
+          <p class="org">Forus International, Paris</p>
+          <p>Co-animation des groupes de travail Droits numériques et Environnement favorable : réunions, webinaires, consultations, suivi des livrables. Préparation de la participation du réseau à l'IGF, à l'OCDE et aux processus de l'ONU (HLPF, FfD4). Contribution à une cartographie des obstacles rencontrés par la société civile dans les processus de gouvernance de l'internet (projet CADE).</p>
+          <p class="use"><b>Pour la gouvernance IA</b> coordination d'acteurs aux intérêts différents, forums multilatéraux</p>
+        </div>
+      </article>
+
+      <article class="win entry" data-p="P">
+        <div class="titlebar"><span>P · oct. 2024 – mars 2025</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <h3>Assistante de recherche (stage)</h3>
+          <p class="org">Institut des Sciences Sociales du Politique (ISP/CNRS), Paris</p>
+          <p>Entretiens avec des universitaires et artistes en exil, avec consentement éclairé et anonymisation, pour le projet participatif Géo-Récits. Co-organisation d'un séminaire franco-brésilien de plusieurs jours, avec des sessions au Collège de France.</p>
+          <p class="use"><b>Pour la gouvernance IA</b> entretiens qualitatifs, éthique de la collecte de données personnelles</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="n">03</span><h2>Ce que je sais faire</h2></div>
+    <div class="skills">
+      <div class="win">
+        <div class="titlebar"><span>competences.txt</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <ul>
+            <li><b>Régulation :</b> AI Act, RGPD, principes de l'OCDE, recommandation de l'UNESCO, LGPD (Brésil)</li>
+            <li><b>Veille réglementaire :</b> suivi des textes et de leur mise en œuvre, traduction en obligations</li>
+            <li><b>Analyse comparative :</b> politiques d'IA de plusieurs pays, lues dans le texte original</li>
+            <li><b>Rédaction :</b> notes de synthèse, avis juridiques, rapports, articles</li>
+          </ul>
+        </div>
+      </div>
+      <div class="win">
+        <div class="titlebar"><span>methodes.txt</span><span class="ctl"><i></i><i></i></span></div>
+        <div class="winbody">
+          <ul>
+            <li><b>Parties prenantes :</b> cartographie, consultations, animation de groupes multi-acteurs</li>
+            <li><b>Recherche :</b> analyse documentaire, archives, entretiens qualitatifs</li>
+            <li><b>Langues :</b> portugais (natif), français, anglais, espagnol</li>
+            <li><b>Outils :</b> Pack Office, Google Workspace, Notion, ClickUp, Trello, Slack</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="n">04</span><h2>Publications et interventions</h2></div>
+    <div class="win">
+      <div class="titlebar"><span>C:\publications</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <ul class="list">
+          <li><span class="y num">depuis 2026</span><p class="what"><a href="https://substack.com/@vdacal">Governing AI : Upside Down Project</a> · newsletter sur la gouvernance de l'IA, <em>Substack</em></p></li>
+          <li><span class="y num">2025</span><p class="what"><a href="https://eusee.hivos.org/?p=2500">When Cyber Protections Undermine the Enabling Environment</a> · tribune co-écrite avec Clarisse Sih et Bibbi Abruzzini, <em>EU SEE / Hivos</em></p></li>
+          <li><span class="y num">2025</span><p class="what">Mapping CSO Engagement in Multilateral and Multistakeholder Internet Governance Processes · contribution, <em>Forus / projet CADE</em></p></li>
+          <li><span class="y num">2025</span><p class="what"><a href="https://www.forus-international.org/news/lgbtqiap-rights-and-sustainable-development-reflections-in-the-context-of-pride-month-2025">LGBTQIAP+ rights and sustainable development</a> · tribune, <em>Forus</em></p></li>
+          <li><span class="y num">2024</span><p class="what">Communications à la Sciences Po Law School et au colloque Diversitas, Portugal</p></li>
+          <li><span class="y num">2023</span><p class="what">The Movement in Motion: The Current Zapatista Network · article, <em>Caminando</em></p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="n">05</span><h2>Formation</h2></div>
+    <div class="win">
+      <div class="titlebar"><span>C:\formation</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <ul class="list">
+          <li><span class="y num">2023 – 2025</span><p class="what"><strong>Master Sciences sociales, Coopération et développement en Amérique latine</strong> · Sorbonne Nouvelle (IHEAL) · 16,46/20, meilleure moyenne de la promotion · mémoire « Cartographies du cybermonde : l'utopie et la souveraineté numérique en dispute », sous la direction de Franck Poupeau</p></li>
+          <li><span class="y num">2026</span><p class="what"><strong>Formations courtes en gouvernance de l'IA</strong> · BlueDot Impact · AI Governance and AGI Strategy (avril), Frontier AI Governance (août)</p></li>
+          <li><span class="y num">2014 – 2019</span><p class="what"><strong>Diplôme de droit</strong> (5 ans) · Universidade Federal de Mato Grosso do Sul, Brésil · exercice comme avocate de 2021 à 2022</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="win">
+      <div class="titlebar"><span>contact.txt</span><span class="ctl"><i></i><i></i></span></div>
+      <div class="winbody">
+        <p class="label">Me contacter</p>
+        <p>v_dacal@hotmail.com · <span class="num">07 80 77 67 82</span> · <a href="https://www.linkedin.com/in/dacalvitoria">LinkedIn</a></p>
+        <p class="small">Recherche un poste en gouvernance de l'IA, IA responsable ou régulation du numérique, à Paris.</p>
+        <p class="small">Voir aussi le <a href="./droit">profil juridique</a> et le <a href="./rse">portfolio RSE</a>.</p>
+      </div>
+    </div>
+    <p class="status">Dernière mise à jour : novembre 2026</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.filters button');
+  var entries = document.querySelectorAll('.entry');
+  var hashToFilter = {'regulation':'R', 'juridique':'J', 'parties-prenantes':'P'};
+  var filterToHash = {'R':'regulation', 'J':'juridique', 'P':'parties-prenantes'};
+  function apply(f){
+    buttons.forEach(function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-f') === f ? 'true' : 'false'); });
+    entries.forEach(function(e){ e.hidden = !(f === 'all' || e.getAttribute('data-p') === f); });
+  }
+  function fromHash(){
+    var h = (location.hash || '').replace('#','');
+    apply(hashToFilter[h] || 'all');
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-f');
+      apply(f);
+      try { history.replaceState(null, '', f === 'all' ? location.pathname : '#' + filterToHash[f]); } catch(e) {}
+    });
+  });
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>
